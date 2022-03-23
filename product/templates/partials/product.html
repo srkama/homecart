@@ -1,0 +1,10 @@
+<div class="card mb-3" style="width: 18rem;">
+    <img src="{{product.display_image.url}}" width="100px" height="200px" class="card-img-top mt-2" alt="{{product.name}}">
+    <div class="card-body">
+    <h5 class="card-title"><a href="/{{product.slug}}">{{product.name | capfirst}}</a></h5>
+    {% include 'partials/star_rating.html' with star_rating=product.rating %}
+    <p class="card-text">sku:{{product.sku_code}}<br/> price: Rs.{{product.price}}</p>
+    <a href="/add-to-cart/{{product.id}}" class="btn btn-primary">Add to Cart</a>
+    <a href="/review/{{product.id}}" class="btn btn-secondary">Review</a>
+    </div>
+</div>

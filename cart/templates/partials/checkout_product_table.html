@@ -1,0 +1,29 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quanity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in cart.items.all %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{item.product.name}}</td>
+                <td>{{item.qty}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.total_price}}</td>
+           </tr>
+        {% endfor %}
+      <tr>
+        <th scope="row"></th>
+        <td><strong> Grand Total </strong></td>
+        <td>{{cart.total_items}}</td>
+        <td></td>
+        <td>{{cart.total_price}}</td>
+      </tr>
+    </tbody>
+</table>

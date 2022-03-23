@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-3">
+                {% include 'partials/product.html' %}
+            </div>
+            <div class="col-9">
+                <h4>Review Product</h4>
+                {% if message %}
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>
+                {% endif %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <span>Ratings</span>
+                        <div class="small-ratings">
+                            <i class="bi bi-star" data-rating="1"></i>
+                            <i class="bi bi-star" data-rating="2"></i>
+                            <i class="bi bi-star" data-rating="3"></i>
+                            <i class="bi bi-star" data-rating="4"></i>
+                            <i class="bi bi-star" data-rating="5"></i>
+                            <input type="hidden" name="rating" class="rating-value" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Comment</label>
+                                <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    var $star_rating = $('.small-ratings .bi');
+
+    var SetRatingStar = function() {
+        return $star_rating.each(function() {
+            if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+                return $(this).removeClass('bi-star').addClass('bi-star-fill text-warning');
+            } else {
+                return $(this).removeClass('bi-star-fill text-warning').addClass('bi-star');
+            }
+        });
+    };
+    
+    $star_rating.on('click', function() {
+        $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+        return SetRatingStar();
+    });
+
+    $(document).ready(function() {
+
+    });
+    
+</script>
+{% endblock scripts %}

@@ -1,0 +1,8 @@
+<ul class="list-group">
+    {% for category in categories %}
+        <a href="{% url 'category-page' category.id %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            {{category.name | capfirst}}
+            <span class="badge bg-primary rounded-pill">{{category.get_product_count}}</span>
+        </a>
+    {% endfor %}
+</ul>

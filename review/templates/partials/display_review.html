@@ -1,0 +1,8 @@
+<ul>
+    {% for review in reviews %}
+        <li>
+            {% include "partials/star_rating.html" with star_rating=review.stars %}
+            <div>{{review.comment}}</div>
+        </li>
+    {% endfor %}
+</ul>

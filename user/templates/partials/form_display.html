@@ -1,0 +1,27 @@
+{% load form_filters %}
+{% for field in form %}
+<div class="row mb-3">
+    <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label">{{field.label}}</label>
+    <div class="col-sm-10">
+        
+        {% if field.errors %}
+            {{field|add_attr:"form-control is-invalid" }}
+        {% else %}
+            {{field|add_attr:"form-control"}}
+        {% endif %}
+
+        {% if field.help_text and not field.errors %}
+            <div class="form-text">
+                {{ field.help_text|safe }}
+            </div>
+        {% endif %}
+
+        {% if field.errors %}
+            <div class="invalid-feedback" id="{{field.name}}Feedback">
+                {{field.errors | safe}}
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endfor %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h2>View Cart</h2>
+    </div>
+    {% include 'partials/checkout_product_table.html' with cart=cart %}
+    <div class="row">
+        <div class="col-md-4 offset-md-8 justify-content-right">
+            <a href="/" class="btn btn-secondary">Continue Shopping</a>
+            <a href="/checkout" class="btn btn-primary">Checkout</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

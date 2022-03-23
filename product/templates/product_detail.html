@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-3">
+            <img src="{{product.display_image.url}}" width="100px" height="200px" class="card-img-top mt-2" alt="{{product.name}}">
+            <h4>{{product.name | capfirst}}</h4>
+            <h4>{{product.price}}</h4>
+            <h4>{{product.sku_code | capfirst}}</h4>
+        </div>  
+        <div class="col-9">
+            {% if product.reviews.all %}
+                <h3>Reviews</h3>
+                {% include "partials/display_review.html" with reviews=product.reviews.all %}
+            {% else %}
+                <h3> No Reviews </h3>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
